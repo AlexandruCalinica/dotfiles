@@ -1,5 +1,5 @@
 
-nmap <leader>gb :Gblame<CR>
+nmap <leader>gb :Git blame<CR>
 nmap <leader>gs :Gstatus<CR>
 nmap <leader>gd :Gdiff<CR>
 nmap <leader>gl :Glog<CR>
@@ -41,3 +41,7 @@ nmap <leader>cp :call CopyFilePathToClipboard()<CR>
 " make :W the same as :w sick of this happening
 command W w
 command Q q
+
+nmap <silent> gs :call CocAction('jumpDefinition', 'split')<CR>
+nmap <silent> gv :call CocAction('jumpDefinition', 'vsplit')<CR>
+" nmap <silent> gt :call CocAction('jumpDefinition', 'tabe')<CR>

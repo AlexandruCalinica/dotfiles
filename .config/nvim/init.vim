@@ -31,6 +31,8 @@ Plug 'ekalinin/Dockerfile.vim'
 Plug 'jxnblk/vim-mdx-js'
 Plug 'b4b4r07/vim-hcl'
 Plug 'drewtempelmeyer/palenight.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 runtime! ./*.*.vim
