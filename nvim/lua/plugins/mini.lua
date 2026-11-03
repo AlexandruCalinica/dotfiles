@@ -4,18 +4,28 @@ return {
   lazy = false,
   config = function()
     local starter = require("mini.starter")
+    local platform = require("config.platform")
 
     require("mini.icons").setup()
-    MiniIcons.mock_nvim_web_devicons()
 
-    require("mini.files").setup({
+    local files_opts = {
       mappings = {
         go_in = "l",
         go_in_plus = "L",
         go_out = "h",
         go_out_plus = "H",
       },
-    })
+    }
+
+    if platform.is_linux then
+      -- Disable icons to avoid double-width rendering over SSH.
+      files_opts.content = { prefix = function() end }
+      files_opts.windows = { width_focus = 30, width_nofocus = 15, width_preview = 40 }
+    else
+      MiniIcons.mock_nvim_web_devicons()
+    end
+
+    require("mini.files").setup(files_opts)
     local function mini_files_target()
       local path = vim.api.nvim_buf_get_name(0)
       if vim.bo.buftype == "" and path ~= "" and vim.uv.fs_stat(path) ~= nil then
